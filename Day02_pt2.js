@@ -24,7 +24,7 @@ let countValidPasswords = function(input) {
 	let numValid = 0;
 	for(var i = 0; i < input.length; i ++) {
 		var obj = parse(input[i]);
-		if(isValidPt2(obj)) {
+		if(isValid(obj)) {
 			numValid ++;
 		}
 	}
