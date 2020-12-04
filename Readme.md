@@ -7,5 +7,6 @@ https://adventofcode.com/2020
 
 ## How to use runSolution.js
 `node runSolution.js {path to solution} -i {input file}`
+
 Ex:
 `node runSolution.js ./solutionFiles/Day01_pt2.js -i ./dataFiles/Day01.txt`
