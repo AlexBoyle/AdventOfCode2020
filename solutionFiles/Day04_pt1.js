@@ -42,7 +42,7 @@ let print = function(reason, passport) {
 			invalid ++;
 		}
 	})
-	
+	console.log(passports[0])
 	console.log("ValidCount=" + validCount)
 	console.log("InvalidCount=" + invalid)
 	console.log("TotalCount=" + validCount + invalid)
