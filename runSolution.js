@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-
+require('./utilitys')
 let inputFileLocation;
 let data;
 
@@ -25,6 +25,18 @@ if (inputFileLocation != null) {
 		exit(1);
 	}
 }
+
+
+
+String.prototype.Rreplace = function(reg, repalcement) {
+	var re = new RegExp(reg,"g");
+	return this.repalce(new RegExp(reg,"g"), repalcement);
+	
+}	
+
+
+
+
 
 // Run solution file
 const solutionFunction = require(solutionFilepath.dir + '/' + solutionFilepath.name);
