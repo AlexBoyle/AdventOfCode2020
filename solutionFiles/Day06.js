@@ -17,7 +17,7 @@ module.exports  = function(input) {
 	
 	let parsedInput = (parse(input));
 	let total1 = 0;
-	for(var i = 0; i < parsedInput.length; i ++) {total1 += utility.union(parsedInput[i].replace(/\s/g, "")).length;}
+	for(var i = 0; i < parsedInput.length; i ++) {total1 += utility.union(...parsedInput[i].replace(/\s/g, "")).length;}
 	console.log("The total number of unique \"yes\": " + total1)
 	
 	let total2 = 0;
