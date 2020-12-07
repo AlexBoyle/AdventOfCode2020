@@ -1,0 +1,39 @@
+module.exports  = function(input) {
+	let Bag = function(key) {this.key = key; this.has=[]; this.isIn=[];}
+	let BagCondition = function(bag, num) {this.bag = bag; this.num = num;}
+	let parseBags = function(input) {
+		let bags = {}
+		input.forEach( line => {
+			let words = line.split(' bags contain ');
+			if(bags[words[0]] == null) {bags[words[0]] = new Bag(words[0]);}
+			words[1].split(', ').forEach(rule => {
+				if(!rule.startsWith('no')) {
+					let ruleKey = rule.match(/ ([a-z]+ [a-z]+) /g)[0].trim();
+					if(bags[ruleKey] == null){bags[ruleKey] =  new Bag(ruleKey);}
+					bags[words[0]].has.push(new BagCondition(bags[ruleKey], parseInt(rule.match(/^\d+ /g)[0])))
+					bags[ruleKey].isIn.push(new BagCondition(bags[words[0]], parseInt(rule.match(/^\d+ /g)[0])))
+				}
+			})
+		})
+		return bags
+	}
+	let getBagsThatContain = function(bags, bag) {
+		let fullBagList = new Set([])
+		bag.isIn.forEach(con => {
+				fullBagList.add(con.bag.key)
+				fullBagList = utility.union(fullBagList, getBagsThatContain(bags, bags[con.bag.key]))
+		})
+		return fullBagList;
+	}
+	let getNumBagsIn = function(bags, bag) {
+		let countBags = 0;
+		bag.has.forEach(con => {
+				countBags += con.num
+				countBags += con.num * getNumBagsIn(bags, bags[con.bag.key]);
+		})
+		return countBags;
+	}
+	let bags = parseBags(input);
+	console.log("There are " + getBagsThatContain(bags, bags['shiny gold']).size + " bags that contain a \"shiny gold bag\"")
+	console.log("There are " + getNumBagsIn(bags, bags['shiny gold']) + " bags in the \"shiny gold bag\"")
+}

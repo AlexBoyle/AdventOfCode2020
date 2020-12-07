@@ -15,7 +15,7 @@ let toArray = function(str) {
 			sets.forEach(set => {
 				union = new Set([...union, ...set])
 			})
-			return [...union]
+			return union
 		},
 		"intersect" : function(...sets) {
 			return sets.reduce((a, b) => {a = toArray(a); b = toArray(b); return a.filter(c => b.includes(c))});
