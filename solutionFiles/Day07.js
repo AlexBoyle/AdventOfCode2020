@@ -20,7 +20,6 @@ module.exports  = function(input) {
 	let getBagsThatContain = function(bags, bag) {
 		let fullBagList = new Set([])
 		bag.isIn.forEach(con => {
-				
 				fullBagList = utility.union(fullBagList.add(con.bag.key), getBagsThatContain(bags, bags[con.bag.key]))
 		})
 		return fullBagList;
