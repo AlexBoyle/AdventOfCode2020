@@ -20,16 +20,15 @@ module.exports  = function(input) {
 	let getBagsThatContain = function(bags, bag) {
 		let fullBagList = new Set([])
 		bag.isIn.forEach(con => {
-				fullBagList.add(con.bag.key)
-				fullBagList = utility.union(fullBagList, getBagsThatContain(bags, bags[con.bag.key]))
+				
+				fullBagList = utility.union(fullBagList.add(con.bag.key), getBagsThatContain(bags, bags[con.bag.key]))
 		})
 		return fullBagList;
 	}
 	let getNumBagsIn = function(bags, bag) {
 		let countBags = 0;
 		bag.has.forEach(con => {
-				countBags += con.num
-				countBags += con.num * getNumBagsIn(bags, bags[con.bag.key]);
+				countBags += con.num + (con.num * getNumBagsIn(bags, bags[con.bag.key]));
 		})
 		return countBags;
 	}
