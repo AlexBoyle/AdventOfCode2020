@@ -9,7 +9,14 @@ module.exports  = function(input) {
 		}
 	}
 
-	let isValid = function(obj) {
+	let isValid1 = function(obj) {
+		var numOfchar = (obj.pass.match(new RegExp(obj.letter, "g") )|| []).length;
+		if(numOfchar >= obj.firstNum && numOfchar <= obj.secondNum)
+			return true;
+		return false;
+	}
+
+	let isValid2 = function(obj) {
 		if(
 			obj.pass[obj.firstNum-1] == obj.letter && obj.pass[obj.secondNum-1] != obj.letter ||
 			obj.pass[obj.secondNum-1] == obj.letter && obj.pass[obj.firstNum-1] != obj.letter
@@ -18,17 +25,18 @@ module.exports  = function(input) {
 		}
 		return false
 	}
-
-	let countValidPasswords = function(input) {
-		let numValid = 0;
+	
+	let countValidPasswords = function(input, validation) {
+		let numValid1 = 0;
 		for(var i = 0; i < input.length; i ++) {
 			var obj = parse(input[i]);
-			if(isValid(obj)) {
-				numValid ++;
+			if(validation(obj)) {
+				numValid1 ++;
 			}
 		}
-		return numValid
+		return numValid1
 	}
 
-	console.log(countValidPasswords(input));
+	console.log("Part1: " + countValidPasswords(input, isValid1))
+	console.log("Part2: " + countValidPasswords(input, isValid2))
 }
