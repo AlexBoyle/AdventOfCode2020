@@ -17,8 +17,6 @@ module.exports  = function(input) {
 		})
 		return bags
 	}
-
-	
 	let getBagsThatContain = function(bags, bag) {
 		return bag.isIn.reduce((fullBagList, con) => {return utility.union(fullBagList.add(con.bag.key), getBagsThatContain(bags, bags[con.bag.key]))}, (new Set([])))
 	}
