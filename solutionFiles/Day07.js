@@ -17,15 +17,14 @@ module.exports  = function(input) {
 		})
 		return bags
 	}
+
+	
 	let getBagsThatContain = function(bags, bag) {
-		let fullBagList = new Set([])
-		bag.isIn.forEach(con => {fullBagList = utility.union(fullBagList.add(con.bag.key), getBagsThatContain(bags, bags[con.bag.key]))})
-		return fullBagList;
+		return bag.isIn.reduce((fullBagList, con) => {return utility.union(fullBagList.add(con.bag.key), getBagsThatContain(bags, bags[con.bag.key]))}, (new Set([])))
 	}
+	
 	let getNumBagsIn = function(bags, bag) {
-		let countBags = 0;
-		bag.has.forEach(con => {countBags += con.num + (con.num * getNumBagsIn(bags, bags[con.bag.key]));})
-		return countBags;
+		return bag.has.reduce((countBags, con) => {return countBags += con.num + (con.num * getNumBagsIn(bags, bags[con.bag.key]));}, 0)
 	}
 	let bags = parseBags(input);
 	console.log("There are " + getBagsThatContain(bags, bags['shiny gold']).size + " bags that contain a \"shiny gold bag\"")
