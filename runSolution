@@ -1,0 +1,2 @@
+#! /bin/bash
+node runSolution.js ./solutionFiles/Day"$1".js -i ./dataFiles/Day"$1".txt

@@ -46,6 +46,6 @@ module.exports  = function(input) {
 
 	let passports = parse(input);
 	let validCount = 0;
-	passports.forEach((passport) => {if(validate(passport)){validCount ++;})
+	passports.forEach((passport) => {if(validate(passport)){validCount ++;}})
 	console.log("ValidCount=" + validCount)
 }

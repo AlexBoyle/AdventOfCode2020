@@ -40,4 +40,6 @@ String.prototype.Rreplace = function(reg, repalcement) {
 
 // Run solution file
 const solutionFunction = require(solutionFilepath.dir + '/' + solutionFilepath.name);
-solutionFunction(data);
+console.log("")
+utility.timeFunction(solutionFunction, [data])
+//solutionFunction(data);
