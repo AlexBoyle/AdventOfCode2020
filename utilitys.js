@@ -31,6 +31,6 @@ let toArray = function(str) {
 			let hrend;
 			func(...input)
 			hrend = process.hrtime(hrstart)
-			console.info('\nExecution time: ' + (hrend[0] > 0? hrend[0] + 's':'') + ' %dms', hrend[1] / 1000000)
+			console.info('\nExecution time: ' + (hrend[0] > 0? hrend[0] + 's':'') + '%dms', hrend[1] / 1000000)
 		}
 	}
