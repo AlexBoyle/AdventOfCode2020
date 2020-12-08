@@ -10,3 +10,10 @@ https://adventofcode.com/2020
 
 Ex:
 `node runSolution.js ./solutionFiles/Day01_pt2.js -i ./dataFiles/Day01.txt`
+## How to use runSolution
+runSolution is simply 
+
+`node runSolution.js ./solutionFiles/Day"$1".js -i ./dataFiles/Day"$1".txt`
+
+So runSolution can be used like
+`./runSolution {day to run}`
