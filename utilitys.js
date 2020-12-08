@@ -21,16 +21,16 @@ let toArray = function(str) {
 			return sets.reduce((a, b) => {a = toArray(a); b = toArray(b); return a.filter(c => b.includes(c))});
 		},
 		"replaceAll": function(str, reg, repalcement) {
-			var re = new RegExp(reg,"g");
+			let re = new RegExp(reg,"g");
 			return this.replace(new RegExp(reg,"g"), repalcement);
 		},
 		"timeFunction": function(func, input) {
-			var start = new Date()
-			var hrstart = process.hrtime()
-			var simulateTime = 5
-			var hrend;
+			let start = new Date()
+			let hrstart = process.hrtime()
+			let simulateTime = 5
+			let hrend;
 			func(...input)
 			hrend = process.hrtime(hrstart)
-			console.info('\nExecution time (hr): %ds %dms', hrend[0], hrend[1] / 1000000)
+			console.info('\nExecution time (hr):' + (hrend[0] > 0? hrend[0] + 's':'') + ' %dms', hrend[1] / 1000000)
 		}
 	}
