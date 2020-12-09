@@ -14,7 +14,7 @@ module.exports  = function(input) {
 	}
 	let pream = []
 	let endOne = 0;
-	for(i = 0; i < 25; i ++)
+	for(var i = 0; i < 25; i ++)
 		pream.push((input[i]))
 	for(var i = 25; i < input.length; i ++) {
 		if(!doAnyAdd(pream, (input[i]))) {
@@ -24,12 +24,10 @@ module.exports  = function(input) {
 		}
 		pream.shift();
 		pream.push((input[i]))
-		
 	}
-	let arr = [];
-	let subArr = null;
 	for (var i = 2; i < input.length; i ++) {
 		for(var j = 0; j < input.length; j++) {
+			let subArr = null;
 			if(utility.arr.getSum(subArr = utility.arr.getSub(input,i,j))==endOne) {
 				console.log("The encryption weakness is: " + (Math.min(...subArr)+Math.max(...subArr)))
 				return
