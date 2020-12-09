@@ -28,10 +28,13 @@ module.exports  = function(input) {
 	for (var i = 2; i < input.length; i ++) {
 		for(var j = 0; j < input.length; j++) {
 			let subArr = null;
-			if(utility.arr.getSum(subArr = utility.arr.getSub(input,i,j))==endOne) {
+			let sum = 0;
+			if(sum= utility.arr.getSum(subArr = utility.arr.getSub(input,i,j))==endOne) {
 				console.log("The encryption weakness is: " + (Math.min(...subArr)+Math.max(...subArr)))
 				return
 			}
+			else if(sum > endOne)
+				break;
 		}
 	}
 }
