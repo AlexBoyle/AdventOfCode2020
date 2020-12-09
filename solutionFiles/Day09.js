@@ -2,9 +2,8 @@ module.exports  = function(input) {
 	input = input.reduce((out, line) => {
 		out.push(parseInt(line))
 		return out;
-	}
-	,[])
-	let doAnyAdd = function(arr,length, num) {
+	},[])
+	let doAnyAdd = function(arr, num) {
 		for (var i = 0; i < arr.length-1;  i ++) {
 			for (var j = i; j < arr.length;  j ++) {
 					if(arr[i] + arr[j] == num)
@@ -18,7 +17,7 @@ module.exports  = function(input) {
 	for(i = 0; i < 25; i ++)
 		pream.push((input[i]))
 	for(var i = 25; i < input.length; i ++) {
-		if(!doAnyAdd(pream, 2, (input[i]))) {
+		if(!doAnyAdd(pream, (input[i]))) {
 			console.log("The First bad number is " + input[i])
 			endOne = (input[i])
 			break;
