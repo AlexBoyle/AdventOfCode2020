@@ -6,13 +6,12 @@ module.exports  = function(input) {
 	.sort((a,b)=>a-b)
 	.map((num, i, arr) => i > 0 ? num - arr[i-1] : num)
 	diffrences.push(3)
-	let oneD = 0,threeD = 0;
+	let oneD = 0,threeD = 0,len = 0,total = 1;
 	diffrences.forEach((num => {
 		if(num == 1) {oneD ++;}
 		else if (num == 3){threeD ++;}
 	}))
 	console.log("Pt1: " + (threeD  * oneD))
-	let len = 0,total = 1;
 	let contiguosOnes = diffrences.reduce((arr, val) => {
 		if (val == 1) {len++}
 		else {
