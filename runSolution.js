@@ -14,7 +14,6 @@ for(var i = 3; process.argv[i] != null; i ++) {
 			break;
 	}
 }
-
 // Load input data
 if (inputFileLocation != null) {
 	try {
@@ -25,21 +24,7 @@ if (inputFileLocation != null) {
 		exit(1);
 	}
 }
-
-
-
-String.prototype.Rreplace = function(reg, repalcement) {
-	var re = new RegExp(reg,"g");
-	return this.repalce(new RegExp(reg,"g"), repalcement);
-	
-}	
-
-
-
-
-
 // Run solution file
 const solutionFunction = require(solutionFilepath.dir + '/' + solutionFilepath.name);
-console.log("")
 utility.timeFunction(solutionFunction, [data])
 //solutionFunction(data);
