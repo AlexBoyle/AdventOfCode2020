@@ -25,17 +25,15 @@ module.exports  = function(input) {
 		let wasChanged = false;
 		let nextBoard = board.reduce((out, line) => {out.push([...line]);return out;},[])
 		for(var i = 0; i < seats.length; i++) {
-			if(nextBoard[seats[i][0]][seats[i][1]] == 'L' && getseatFilledCountAt(seats[i][0],seats[i][1], board, vision) == 0) {
+			if(getSeatAt(seats[i][0],seats[i][1], board) == 'L' && getseatFilledCountAt(seats[i][0],seats[i][1], board, vision) == 0) {
 				wasChanged = true;
 				nextBoard[seats[i][0]][seats[i][1]] = '#';
 			}
-			else if(nextBoard[seats[i][0]][seats[i][1]] == '#' && getseatFilledCountAt(seats[i][0],seats[i][1], board, vision) >= tolorance) {
+			else if(getSeatAt(seats[i][0],seats[i][1], board) == '#' && getseatFilledCountAt(seats[i][0],seats[i][1], board, vision) >= tolorance) {
 				wasChanged = true;
 				nextBoard[seats[i][0]][seats[i][1]] = 'L';
 			}
 		}
-		
-		
 		return {"board": nextBoard, "wasChanged": wasChanged};
 	}
 	let runSim = function(board,tolorance = 4, vision = false) {
