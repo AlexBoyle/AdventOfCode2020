@@ -7,7 +7,7 @@ module.exports  = function(input) {
 	.map((num, i, arr) => i > 0 ? num - arr[i-1] : num)
 	diffrences.push(3)
 	let oneD = 0,threeD = 0,len = 0,total = 1;
-	diffrences.forEach((num => {
+	diffrences.forEach(((num, i) => {
 		if(num == 1) {oneD ++;}
 		else if (num == 3){threeD ++;}
 	}))
