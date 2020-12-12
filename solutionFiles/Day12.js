@@ -1,0 +1,136 @@
+module.exports  = function(input) {
+	let EAST = 'E'
+	let NORTH = 'N'
+	let SOUTH = 'S'
+	let WEST = 'W'
+	instructions = input.reduce((out, line) => {
+		let chara = line.match(/.{1}/)[0]
+		let numb = line.match(/\d+/)[0]
+		out.push({"inst": chara, "num": parseInt(numb)})
+		return out;
+	},[])
+	let turn1  = function(letter, num, current) {
+		let out = current;
+		if(letter == 'L') {
+			for(var i = 0; i < (num/90)%4; i ++) {
+				if(out == EAST) {out = NORTH}
+				else if(out == NORTH) {out = WEST}
+				else if(out == WEST) {out = SOUTH}
+				else if(out == SOUTH) {out = EAST}
+			}
+		}
+		else if(letter == 'R') {
+			for(var i = 0; i < (num/90)%4; i ++) {
+				if(out == EAST) {out = SOUTH}
+				else if(out == SOUTH) {out = WEST}
+				else if(out == WEST) {out = NORTH}
+				else if(out == NORTH) {out = EAST}
+			}
+		}
+		return out
+	}
+	let turn2  = function(letter, num,  waypoint) {
+		let normal =  {"NS": waypoint.NS, "EW": waypoint.EW}
+		if(letter == 'L') {
+			for(var i = 0; i < (num/90)%4; i ++) {
+				normal.NS*=-1
+				let temp = normal.NS
+				normal.NS = normal.EW
+				normal.EW = temp;
+			}
+		}
+		else if(letter == 'R') {
+			for(var i = 0; i < (num/90)%4; i ++) {
+				normal.EW*=-1
+				let temp = normal.NS
+				normal.NS = normal.EW
+				normal.EW = temp;
+			}
+		}
+		return normal
+	}
+	let part1 = function() {
+		let dir = EAST
+		let movement = {"NS": 0, "EW": 0}
+		for(var i = 0; i < instructions.length; i ++) {
+			let instruction = instructions[i]
+			switch(instruction.inst) {
+				case NORTH:
+					movement.NS += instruction.num
+					break;
+				case SOUTH:
+					movement.NS -= instruction.num
+					break;
+				case EAST: 
+					movement.EW += instruction.num
+					break;
+				case WEST: 
+					movement.EW -= instruction.num
+					break;
+				case 'L':
+					dir = turn1('L', instruction.num, dir)
+					break;
+				case 'R':
+					dir = turn1('R', instruction.num, dir)
+					break;
+				case 'F':
+					switch(dir) {
+						case 'N':
+							movement.NS += instruction.num
+							break;
+						case 'S':
+							movement.NS -= instruction.num
+							break;
+						case 'E': 
+							movement.EW += instruction.num
+							break;
+						case 'W': 
+							movement.EW -= instruction.num
+							break;
+					}
+					break;
+			}
+		}
+		console.log( "Part1: " + (Math.abs(movement.NS) +  Math.abs(movement.EW)))
+	}
+	let part2 = function() {
+		let waypoint = {"NS": 1, "EW": 10}
+		let movement= {"NS": 0, "EW": 0}
+		for(var i = 0; i < instructions.length; i ++) {
+			let instruction = instructions[i]
+			switch(instruction.inst) {
+				case 'N':
+					waypoint.NS += instruction.num
+					break;
+				case 'S':
+					waypoint.NS -= instruction.num
+					break;
+				case 'E': 
+					waypoint.EW += instruction.num
+					break;
+				case 'W': 
+					waypoint.EW -= instruction.num
+					break;
+				case 'L':
+					waypoint = turn2('L', instruction.num, waypoint)
+					break;
+				case 'R':
+					waypoint = turn2('R', instruction.num, waypoint)
+					break;
+				case 'F':
+					for (var j = 0; j < instruction.num; j ++) {
+						movement.NS += waypoint.NS
+						movement.EW += waypoint.EW
+					}
+					break;
+			}
+		}
+		console.log("Part2: " + (Math.abs(movement.NS) +  Math.abs(movement.EW)))
+	}
+	
+	
+	part1()
+	part2()
+	
+	
+}
