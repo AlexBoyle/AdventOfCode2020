@@ -1,57 +1,27 @@
 module.exports  = function(input) {
-	let EAST = 'E'
-	let NORTH = 'N'
-	let SOUTH = 'S'
-	let WEST = 'W'
-	instructions = input.reduce((out, line) => {
-		let chara = line.match(/.{1}/)[0]
-		let numb = line.match(/\d+/)[0]
-		out.push({"inst": chara, "num": parseInt(numb)})
-		return out;
-	},[])
+	const EAST = 'E',NORTH = 'N',SOUTH = 'S',WEST = 'W';
 	let turn1  = function(letter, num, current) {
 		let out = current;
 		if(letter == 'L') {
 			for(var i = 0; i < (num/90)%4; i ++) {
-				if(out == EAST) {out = NORTH}
-				else if(out == NORTH) {out = WEST}
-				else if(out == WEST) {out = SOUTH}
-				else if(out == SOUTH) {out = EAST}
+				if(out == EAST) {out = NORTH} else if(out == NORTH) {out = WEST} else if(out == WEST) {out = SOUTH} else if(out == SOUTH) {out = EAST}
 			}
 		}
 		else if(letter == 'R') {
 			for(var i = 0; i < (num/90)%4; i ++) {
-				if(out == EAST) {out = SOUTH}
-				else if(out == SOUTH) {out = WEST}
-				else if(out == WEST) {out = NORTH}
-				else if(out == NORTH) {out = EAST}
+				if(out == EAST) {out = SOUTH} else if(out == SOUTH) {out = WEST} else if(out == WEST) {out = NORTH} else if(out == NORTH) {out = EAST}
 			}
 		}
 		return out
 	}
 	let turn2  = function(letter, num,  waypoint) {
 		let normal =  {"NS": waypoint.NS, "EW": waypoint.EW}
-		if(letter == 'L') {
-			for(var i = 0; i < (num/90)%4; i ++) {
-				normal.NS*=-1
-				let temp = normal.NS
-				normal.NS = normal.EW
-				normal.EW = temp;
-			}
-		}
-		else if(letter == 'R') {
-			for(var i = 0; i < (num/90)%4; i ++) {
-				normal.EW*=-1
-				let temp = normal.NS
-				normal.NS = normal.EW
-				normal.EW = temp;
-			}
-		}
+		if(letter == 'L') {for(var i = 0; i < (num/90)%4; i ++) {normal.NS*=-1;[normal.NS, normal.EW] = [normal.EW, normal.NS];}}
+		else if(letter == 'R') {for(var i = 0; i < (num/90)%4; i ++) {normal.EW*=-1;[normal.NS, normal.EW] = [normal.EW, normal.NS];}}
 		return normal
 	}
-	let part1 = function() {
-		let dir = EAST
-		let movement = {"NS": 0, "EW": 0}
+	let part1 = function(instructions) {
+		let dir = EAST, movement = {"NS": 0, "EW": 0}
 		for(var i = 0; i < instructions.length; i ++) {
 			let instruction = instructions[i]
 			switch(instruction.inst) {
@@ -93,9 +63,8 @@ module.exports  = function(input) {
 		}
 		console.log( "Part1: " + (Math.abs(movement.NS) +  Math.abs(movement.EW)))
 	}
-	let part2 = function() {
-		let waypoint = {"NS": 1, "EW": 10}
-		let movement= {"NS": 0, "EW": 0}
+	let part2 = function(instructions) {
+		let waypoint = {"NS": 1, "EW": 10},movement= {"NS": 0, "EW": 0};
 		for(var i = 0; i < instructions.length; i ++) {
 			let instruction = instructions[i]
 			switch(instruction.inst) {
@@ -128,9 +97,12 @@ module.exports  = function(input) {
 		console.log("Part2: " + (Math.abs(movement.NS) +  Math.abs(movement.EW)))
 	}
 	
-	
-	part1()
-	part2()
-	
-	
+	instructions = input.reduce((out, line) => {
+		let chara = line.match(/.{1}/)[0]
+		let numb = line.match(/\d+/)[0]
+		out.push({"inst": chara, "num": parseInt(numb)})
+		return out;
+	},[])
+	part1(instructions)
+	part2(instructions)
 }
