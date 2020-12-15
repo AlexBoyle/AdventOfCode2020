@@ -21,5 +21,5 @@ module.exports  = function(input) {
 		console.log(lastSpoken)
 	}
 	run([...input], 2020);
-	run([...input], 2000000//30000000);
+	run([...input], 2000000)//30000000);
 }
