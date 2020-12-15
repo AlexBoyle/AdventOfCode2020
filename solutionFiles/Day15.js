@@ -5,21 +5,28 @@ module.exports  = function(input) {
 		return out
 	},[])
 	let run = function(input, length) {
-		let spoken = [],newlastSpoken,i = 0,lastSpoken = 0
+		let spoken = new Map(),newlastSpoken,i = 0,lastSpoken = 0
 		length = length-1
 		while(i < input.length) {
-			if(spoken[input[i]] == null) {
-				spoken[input[i]] =  (i++)+1;
-				lastSpoken = 0;
-			}
+			spoken.set(input[i]+ "", (i++)+1);
+			lastSpoken = 0;
 		}
 		while(i < length) {
-				newlastSpoken =  spoken[lastSpoken] == null ? 0 : (i+1) - spoken[lastSpoken];
-				spoken[lastSpoken] = (i++)+1;
+			
+
+			if(!spoken.has(lastSpoken+ "")) {
+				spoken.set(lastSpoken + "", (i++)+1);
+				lastSpoken = 0;
+			}
+			else {
+				newlastSpoken = (i+1) - spoken.get(lastSpoken+"");
+				spoken.set(lastSpoken+ "", (i++)+1);
 				lastSpoken = newlastSpoken;
+			}
 		}
 		console.log(lastSpoken)
 	}
+
 	run([...input], 2020);
-	run([...input], 2000000)//30000000);
+	run([...input], 30000000);
 }
