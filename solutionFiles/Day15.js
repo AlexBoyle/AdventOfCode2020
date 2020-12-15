@@ -4,34 +4,22 @@ module.exports  = function(input) {
 		out.push(parseInt(line))
 		return out
 	},[])
-	let part1 = function(input) {
-		let spoken = {}
-		var i = 0
-		let lastSpoken = 0
-		for(; i < input.length; i ++) {
+	let run = function(input, length) {
+		let spoken = [],newlastSpoken,i = 0,lastSpoken = 0
+		length = length-1
+		while(i < input.length) {
 			if(spoken[input[i]] == null) {
-				spoken[input[i]] =  i+1;
+				spoken[input[i]] =  (i++)+1;
 				lastSpoken = 0;
 			}
 		}
-		let newlastSpoken
-		for(; i < 30000000; i ++) {
-			if(i > 29999990)
-				console.log(lastSpoken)
-			if(i%1000000 == 0)
-				console.log(i)
-			if(spoken[lastSpoken] == null) {
-				spoken[lastSpoken] = i+1;
-				lastSpoken = 0;
-			}
-			else {
-				newlastSpoken =  (i+1) - spoken[lastSpoken];
-				spoken[lastSpoken] = i+1
+		while(i < length) {
+				newlastSpoken =  spoken[lastSpoken] == null ? 0 : (i+1) - spoken[lastSpoken];
+				spoken[lastSpoken] = (i++)+1;
 				lastSpoken = newlastSpoken;
-			}
-			
 		}
-		
+		console.log(lastSpoken)
 	}
-	part1([...input]);
+	run([...input], 2020);
+	run([...input], 2000000//30000000);
 }
