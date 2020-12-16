@@ -20,6 +20,6 @@ module.exports  = function(input) {
 		}
 		return arr
 	}, []);
-	contiguosOnes.forEach(num => {total *= ((Math.pow(2, (num - 1)) - ((num - 2) * (num - 3) / 2)) || 1)})
+	contiguosOnes.forEach(num => {total *= ((Math.pow(2, (num - 1)) - (((num - 2) * (num - 3)) / 2)) || 1)})
 	console.log("Pt2: " + total)
 }
