@@ -20,11 +20,10 @@ module.exports  = function(input) {
 	let getBagsThatContain = function(bags, bag) {
 		return bag.isIn.reduce((fullBagList, con) => {return utility.union(fullBagList.add(con.bag.key), getBagsThatContain(bags, bags[con.bag.key]))}, (new Set([])))
 	}
-	
 	let getNumBagsIn = function(bags, bag) {
 		return bag.has.reduce((countBags, con) => {return countBags += con.num + (con.num * getNumBagsIn(bags, bags[con.bag.key]));}, 0)
 	}
 	let bags = parseBags(input);
-	console.log("There are " + getBagsThatContain(bags, bags['shiny gold']).size + " bags that contain a \"shiny gold bag\"")
-	console.log("There are " + getNumBagsIn(bags, bags['shiny gold']) + " bags in the \"shiny gold bag\"")
+	console.log("Pt1: " + getBagsThatContain(bags, bags['shiny gold']).size)
+	console.log("Pt2: " + getNumBagsIn(bags, bags['shiny gold']) )
 }

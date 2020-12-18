@@ -20,9 +20,9 @@ module.exports  = function(input) {
 				lastSpoken = newlastSpoken;
 			}
 		}
-		console.log(lastSpoken)
+		return lastSpoken
 	}
 
-	run([...input], 2020);
-	run([...input], 30000000);
+	console.log('pt1: ' + run([...input], 2020));
+	console.log('pt2: ' + run([...input], 30000000));
 }

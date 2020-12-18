@@ -8,13 +8,11 @@ module.exports  = function(input) {
 		}
 		return output
 	}
-	
 	var seatIds = parse(input).sort((a,b)=> a-b);
-	console.log("The largetst seat Id is " + seatIds[seatIds.length-1])
-	
+	console.log("Pt1: " + seatIds[seatIds.length-1])
 	for (var i = seatIds[0]; i < seatIds[seatIds.length-1]; i ++) {
 		if(!seatIds.includes(i)) {
-			console.log("Your seat id is " + i);
+			console.log("Pt2: " + i);
 			break;
 		}
 	}

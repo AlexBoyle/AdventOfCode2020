@@ -18,7 +18,7 @@ module.exports  = function(input) {
 		pream.push((input[i]))
 	for(var i = 25; i < input.length; i ++) {
 		if(!doAnyAdd(pream, (input[i]))) {
-			console.log("The First bad number is " + input[i])
+			console.log("Pt1: " + input[i])
 			endOne = (input[i])
 			break;
 		}
@@ -29,7 +29,7 @@ module.exports  = function(input) {
 		for(var j = 0; j < input.length; j++) {
 			let subArr = null;
 			if(utility.arr.getSum(subArr = utility.arr.getSub(input,i,j))==endOne) {
-				console.log("The encryption weakness is: " + (Math.min(...subArr)+Math.max(...subArr)))
+				console.log("Pt2: " + (Math.min(...subArr)+Math.max(...subArr)))
 				return
 			}
 		}

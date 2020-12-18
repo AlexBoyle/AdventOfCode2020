@@ -14,13 +14,11 @@ module.exports  = function(input) {
 		}
 		return output
 	}
-	
 	let parsedInput = (parse(input));
 	let total1 = 0;
 	for(var i = 0; i < parsedInput.length; i ++) {total1 += utility.union(...parsedInput[i].replace(/\s/g, "")).size;}
-	console.log("The total number of unique \"yes\": " + total1)
-	
+	console.log("Pt1: " + total1)
 	let total2 = 0;
 	for(var i = 0; i < parsedInput.length; i ++) {total2 += utility.intersect(...parsedInput[i].split(" ")).length;}
-	console.log("The total number of unique \"yes\" in group: " + total2);
+	console.log("Pt2 " + total2);
 }

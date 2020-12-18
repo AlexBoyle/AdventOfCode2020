@@ -44,11 +44,11 @@ module.exports  = function(input) {
 	}
 	let instructionList = parse(input);
 	let debugOutput = runGameboyDebugger(instructionList)
-	console.log("Gameboy is ending badly with an accumulation of " + debugOutput.accumulator)
+	console.log("Pt1: " + debugOutput.accumulator)
 	let debugOutputFixAttempt = null;
 	for(var i = 0; i < debugOutput.possibleBadInstSet.length; i ++) {
 		if((debugOutputFixAttempt = runGameboyDebugger(instructionList, debugOutput.possibleBadInstSet[i])).health) {
-			console.log("Gameboy is ending correctly with an accumulation of " + debugOutputFixAttempt.accumulator);
+			console.log("Pt2: " + debugOutputFixAttempt.accumulator);
 			break;
 		}
 	}

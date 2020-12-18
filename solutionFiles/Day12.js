@@ -61,7 +61,7 @@ module.exports  = function(input) {
 					break;
 			}
 		}
-		console.log( "Part1: " + (Math.abs(movement.NS) +  Math.abs(movement.EW)))
+		console.log( "Pt1: " + (Math.abs(movement.NS) +  Math.abs(movement.EW)))
 	}
 	let part2 = function(instructions) {
 		let waypoint = {"NS": 1, "EW": 10},movement= {"NS": 0, "EW": 0};
@@ -94,7 +94,7 @@ module.exports  = function(input) {
 					break;
 			}
 		}
-		console.log("Part2: " + (Math.abs(movement.NS) +  Math.abs(movement.EW)))
+		console.log("Pt2: " + (Math.abs(movement.NS) +  Math.abs(movement.EW)))
 	}
 	
 	instructions = input.reduce((out, line) => {
