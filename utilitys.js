@@ -24,6 +24,7 @@ let Utility = function() {
 		let hrstart = process.hrtime()
 		let simulateTime = 5
 		let hrend;
+		console.log('')
 		func(...input)
 		hrend = process.hrtime(hrstart)
 		console.info('\nExecution time: ' + (hrend[0] > 0? hrend[0] + 's':'') + '%dms', hrend[1] / 1000000)
