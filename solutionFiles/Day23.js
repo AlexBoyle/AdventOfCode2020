@@ -21,7 +21,6 @@ module.exports  = function(input) {
 		}
 		first.prev = next;
 		next.next = first;
-		//let tempCup = first.prev;while((tempCup = tempCup.next) != first.prev){console.log(tempCup.num)}console.log(tempCup.num)
 		return [{'selectedNum': first},map]
 	}
 	let cutCups = function(cupList, index, num) {
@@ -73,11 +72,8 @@ module.exports  = function(input) {
 		let pickedup
 		let indexToInsert;
 		for(var i = 1; i <= num; i ++) {
-			//console.log(cupList.selectedNum)
-			//printArr(cupList.selectedNum)
 			pickedup = cutCups1(cupList.selectedNum)
 			let find = cupList.selectedNum.num
-			/////////////////////////////////////////////////
 			let insertNextto;
 			let found = false;
 			while(!found) {
@@ -92,16 +88,11 @@ module.exports  = function(input) {
 			}catch(e){}
 			}
 			
-			///////////////////////////////////
 			let tempCup = insertNextto.next;
-			//console.log(insertNextto)
 			insertNextto.next = pickedup[0]
 			pickedup[0].prev = insertNextto
-			//
 			tempCup.prev = pickedup[1]
 			pickedup[1].next = tempCup
-			//
-			//printArr(cupList.selectedNum)
 			cupList.selectedNum = cupList.selectedNum.next
 			
 		}

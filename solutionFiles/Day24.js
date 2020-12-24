@@ -1,4 +1,4 @@
-const matchAll = require("match-all");
+
 module.exports  = function(input) {
 	const BLACK = true;
 	const WHITE = false;
@@ -114,20 +114,14 @@ module.exports  = function(input) {
 			tile = tileMap.get(key)
 			count = countCloseBlackTiles(tile, oldMap)
 		}
-		//console.log(tag + count + (tile.val == BLACK? " black ": " white ") + key)
 		if(tile.val == BLACK && count != 1 && count != 2) {
-			//console.log(key + " is set to white");
 			tile.val = WHITE;
-			//console.log(" white")
 			return;
-		}//if(tile.val == BLACK){console.log(key + " is still black");return}
+		}
 		if(tile.val == WHITE && (count == 2)) {
 			tile.val = BLACK;
-			//console.log(key + " is set to black");
-			//console.log(" black")
 			return;
-		}//if(tile.val == WHITE){console.log(key + " is still white");return}
-		//console.log((tile.val == BLACK? " black": " white"))
+		}
 		
 	}
 	let getTileKey = function(tile,x=0,y=0) {
@@ -142,11 +136,10 @@ module.exports  = function(input) {
 	}
 	let part2 = function(initPos, num) {
 		let oldTileMap = dupMap(initPos)
-		/////////////////////////////////
-		console.log('Day ' + (0) + ": " + countTiles(initPos))
+		let tileMap
 		for(var i = 0; i < num; i ++) {
 			let lX=0,sX=0,lY=0;sY=0;
-			let tileMap = dupMap(oldTileMap)
+			tileMap = dupMap(oldTileMap)
 			let updated = new Set();
 			for (const [key, value] of oldTileMap.entries()) {
 				let key = getTileKey(value)
@@ -160,24 +153,11 @@ module.exports  = function(input) {
 					})
 				}
 			}
-			//console.log('xBound: [' + sX +', ' + lX+'] yBound: [' + sY + ', ' + lY +']')
 			oldTileMap = dupMap(tileMap)
-			console.log('Day ' + (i+1) + ": " + countTiles(tileMap))
 		}
+		return countTiles(tileMap)[1]
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	let parseddata = parse(input)
 	let initPos = part1(parseddata)
-	part2(initPos, 100)
+	console.log('Pt2: ' + part2(initPos, 100))
 }
-//149576328
