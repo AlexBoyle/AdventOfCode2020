@@ -5,6 +5,7 @@ Advent of Code is an Advent calendar of small programming puzzles for a variety 
 https://adventofcode.com/2020
 
 
+
 ## How to use runSolution.js
 `node runSolution.js {path to solution} -i {input file}`
 
@@ -17,3 +18,6 @@ runSolution is simply
 
 So runSolution can be used like
 `./runSolution {day to run}`
+
+## My Results
+![GitHub Logo](https://github.com/AlexBoyle/AdventOfCode2020/blob/master/Results.PNG)
